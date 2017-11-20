@@ -106,3 +106,8 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
   width: 20px;
   height: 20px;
 }
+
+.navbar-title {
+  color: #f8f8f8;
+  text-transform: uppercase;
+}

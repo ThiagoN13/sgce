@@ -28,9 +28,9 @@
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a ui-sref="index"><H5>INICÍO</H5></a></li>
-            <li><a ui-sref="form"><H5>CADASTRAR APARELHO</H5></a></li>
-            <li><a ui-sref="history"><H5>HISTÓRICO DE CONSUMO</H5></a></li>
+            <li><a ui-sref="index"><h5 class="navbar-title">INICÍO</h5></a></li>
+            <li><a ui-sref="form"><h5 class="navbar-title">CADASTRAR APARELHO</h5></a></li>
+            <li><a ui-sref="history"><h5 class="navbar-title">HISTÓRICO DE CONSUMO</h5></a></li>
           </ul>
         </div>
       </nav>
@@ -39,26 +39,22 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">Consumo mensal: {{calculoMensal.toFixed(2)}}</a>
           </div>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" style="display: inline;">
             <li>
               <input type="checkbox" name="amarela" class="checkbox-flag" ng-model="bandeira.amarela">
-              <a href="#"><div class="flag flag-yelow"></div>
-              </a>
+              <a href="#"><div class="flag flag-yelow"></div></a>
             </li>
             <li>
               <input type="checkbox" name="verde" class="checkbox-flag" ng-model="bandeira.verde">
-              <a href="#"><div class="flag flag-green"></div>
-              </a>
+              <a href="#"><div class="flag flag-green"></div></a>
             </li>
             <li>
               <input type="checkbox" name="vermelho1" class="checkbox-flag" ng-model="bandeira.vermelho1">
-              <a href="#"><div class="flag flag-red1"></div>
-              </a>
+              <a href="#"><div class="flag flag-red1"></div></a>
             </li>
             <li>
               <input type="checkbox" name="vermelho2" class="checkbox-flag" ng-model="bandeira.vermelho2">
-              <a href="#"><div class="flag flag-red2"></div>
-              </a>
+              <a href="#"><div class="flag flag-red2"></div></a>
             </li>
             <li><a href="#"></a></li>
             <li><a ng-click="sair()">Sair</a></li>
