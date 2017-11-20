@@ -39,25 +39,25 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">Consumo mensal: {{calculoMensal.toFixed(2)}}</a>
           </div>
-          <ul class="nav navbar-nav navbar-right" style="display: inline;">
+          <ul class="nav navbar-nav navbar-right" style="display: inline !important">
             <li>
               <input type="checkbox" name="amarela" class="checkbox-flag" ng-model="bandeira.amarela">
-              <a href="#"><div class="flag flag-yelow"></div></a>
+              <a href="#!"><div class="flag flag-yelow"></div></a>
             </li>
             <li>
               <input type="checkbox" name="verde" class="checkbox-flag" ng-model="bandeira.verde">
-              <a href="#"><div class="flag flag-green"></div></a>
+              <a href="#!"><div class="flag flag-green"></div></a>
             </li>
             <li>
               <input type="checkbox" name="vermelho1" class="checkbox-flag" ng-model="bandeira.vermelho1">
-              <a href="#"><div class="flag flag-red1"></div></a>
+              <a href="#!"><div class="flag flag-red1"></div></a>
             </li>
             <li>
               <input type="checkbox" name="vermelho2" class="checkbox-flag" ng-model="bandeira.vermelho2">
-              <a href="#"><div class="flag flag-red2"></div></a>
+              <a href="#!"><div class="flag flag-red2"></div></a>
             </li>
-            <li><a href="#"></a></li>
-            <li><a ng-click="sair()">Sair</a></li>
+            <li><a href="#!"></a></li>
+            <li><a href="#!" ng-click="sair()">Sair</a></li>
           </ul>
         </div>
       </nav>

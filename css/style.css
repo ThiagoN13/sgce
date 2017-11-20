@@ -3,11 +3,24 @@
 }
 
 .navbar-default {
-  border-radius: 0px !important
+  border-radius: 0px !important;
+}
+
+.navbar-collapse {
+  border-color: transparent !important;
+}
+
+.icon-bar {
+  background-color: #fff !important;
+}
+
+.navbar-toggle:hover {
+  background-color: transparent !important
 }
 
 .navbar-top {
   background-color: #6699ff !important;
+  border-color: #6699ff !important;  
   padding: 30px;
 }
 
