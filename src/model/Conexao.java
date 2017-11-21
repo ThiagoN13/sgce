@@ -9,7 +9,7 @@ import java.sql.*;
 
 /**
  *
- * @author fran
+ * @author thiago
  */
 public class Conexao {
   

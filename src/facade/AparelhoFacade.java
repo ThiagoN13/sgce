@@ -15,19 +15,24 @@ import model.Aparelho;
 
 @Consumes({MediaType.APPLICATION_JSON})
 
-
 @Path("/aparelhos")
 public class AparelhoFacade {
+	AparelhoDAO aparelhoDao = new AparelhoDAO();
 	static ArrayList<Aparelho> aparelhos = new ArrayList<Aparelho>();
+
+	static {
+		aparelhos.add(new Aparelho("TV", 12, "quarto"));
+	}
 	
 	@GET
+	@Produces("application/json")
 	public ArrayList<Aparelho> executaGet(){
-		return aparelhos;
+        return aparelhos;
+//		return aparelhoDao.listar();
 	}
 	
 	@POST 
-	public void postMessage(Aparelho aparelho) throws Exception{
-		AparelhoDAO aparelhoDao = new AparelhoDAO();
+	public void executaPost(Aparelho aparelho) throws Exception{
 		aparelhoDao.cadastro(aparelho.getNome(), aparelho.getPotencia(), aparelho.getComodo());
     }
 }

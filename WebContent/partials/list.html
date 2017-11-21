@@ -6,7 +6,12 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label>Aparelho</label>
-          <select name="fk_aparelho" class="form-control" ng-model="calculo.fk_aparelho" required>
+          <select 
+	          name="fk_aparelho" 
+	          class="form-control" 
+	          ng-model="calculo.fk_aparelho" 
+	          ng-options="item as item.nome for item in aparelhos track by id_aparelho"
+	          required>
             <option value="" disabled selected>Selecione um aparelho</option>
             <option value="12s">teste um aparelho</option>
           </select>

@@ -14,11 +14,18 @@ const myApp = angular.module('sgceApp', ['ui.router'])
   .controller('homeController', function($scope, $location) {
 
   })
-  .controller('listController', function($scope, $location, $stateParams) {
+  .controller('listController', function($scope, $location, $stateParams, $http) {
     $scope.comodo = setarTitulo($stateParams.comodo)
     $scope.calculos = []
     $scope.submeterFormulario = submeterFormulario
 
+    function listarAparelhos() {
+      $http.get("http://localhost:8080/SGCE/rest/aparelhos")
+	    .then(function(response) {
+	        $scope.aparelhos = response.data;
+	    })
+    }
+    
     function setarTitulo(comodo) {
       switch(comodo) {
         case 'area_de_servico':
@@ -33,6 +40,8 @@ const myApp = angular.module('sgceApp', ['ui.router'])
 
       $scope.calculos.push($scope.calculo)
     }
+    
+    listarAparelhos()
   })
   .controller('historyController', function($scope, $location) {
 

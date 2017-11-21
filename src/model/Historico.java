@@ -10,7 +10,7 @@ public class Historico implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id_historico;
-	private String data;//reanalizar  o tipo
+	private String data;
 	private double valor_em_preco;
 	private String bandeiras;
 	private int quantidade_de_aparelhos;
