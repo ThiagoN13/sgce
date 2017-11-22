@@ -1,11 +1,10 @@
 package dao;
 import model.Aparelho;
 import model.Conexao;
-import java.sql.PreparedStatement;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import java.sql.Connection;
 
 public class AparelhoDAO {
 	Conexao conexao;
