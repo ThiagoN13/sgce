@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: pffran
+-- Host: 127.0.0.1    Database: sgce
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.1.28-MariaDB
 
@@ -25,9 +25,13 @@ DROP TABLE IF EXISTS `aparelho`;
 CREATE TABLE `aparelho` (
   `id_aparelho` int(5) NOT NULL AUTO_INCREMENT,
   `nome_aparelho` varchar(30) NOT NULL,
-  `potencia` varchar(3) NOT NULL,
+  `potencia` varchar(7) NOT NULL,
   `comodo` enum('sala','quarto','cozinha','banheiro','outro') NOT NULL,
-  PRIMARY KEY (`id_aparelho`)
+  `padrao` tinyint(1) NOT NULL,
+  `fk_usuario` int(5) NOT NULL,
+  PRIMARY KEY (`id_aparelho`),
+  KEY `fk_usuario` (`fk_usuario`),
+  CONSTRAINT `aparelho_ibfk_1` FOREIGN KEY (`fk_usuario`) REFERENCES `usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,10 +53,12 @@ DROP TABLE IF EXISTS `bandeira`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bandeira` (
   `id_bandeira` int(5) NOT NULL AUTO_INCREMENT,
-  `tipo_bandeira` varchar(20) NOT NULL,
-  `valor_bandeira` varchar(10) DEFAULT NULL,
+  `verde` tinyint(1) NOT NULL,
+  `amarela` tinyint(1) NOT NULL,
+  `vermelha_1` tinyint(1) NOT NULL,
+  `vermelha_2` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_bandeira`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,36 +67,7 @@ CREATE TABLE `bandeira` (
 
 LOCK TABLES `bandeira` WRITE;
 /*!40000 ALTER TABLE `bandeira` DISABLE KEYS */;
-INSERT INTO `bandeira` VALUES (1,'verde',NULL),(2,'amarela','1.00'),(3,'vermelha 1','3.00'),(4,'vermelha 2','5.00');
 /*!40000 ALTER TABLE `bandeira` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `historico_bandeira`
---
-
-DROP TABLE IF EXISTS `historico_bandeira`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `historico_bandeira` (
-  `id_historico_bandeira` int(5) NOT NULL AUTO_INCREMENT,
-  `fk_bandeira` int(5) NOT NULL,
-  `fk_historico_consumo` int(5) NOT NULL,
-  PRIMARY KEY (`id_historico_bandeira`),
-  KEY `fk_bandeira` (`fk_bandeira`),
-  KEY `fk_historico_consumo` (`fk_historico_consumo`),
-  CONSTRAINT `historico_bandeira_ibfk_1` FOREIGN KEY (`fk_bandeira`) REFERENCES `bandeira` (`id_bandeira`),
-  CONSTRAINT `historico_bandeira_ibfk_2` FOREIGN KEY (`fk_historico_consumo`) REFERENCES `historico_consumo` (`id_historico`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `historico_bandeira`
---
-
-LOCK TABLES `historico_bandeira` WRITE;
-/*!40000 ALTER TABLE `historico_bandeira` DISABLE KEYS */;
-/*!40000 ALTER TABLE `historico_bandeira` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -108,9 +85,12 @@ CREATE TABLE `historico_consumo` (
   `quantidade_da_potencia` varchar(10) NOT NULL,
   `tipo_calculo` enum('diario','mensal') NOT NULL,
   `fk_aparelho` int(5) NOT NULL,
+  `fk_bandeira` int(5) NOT NULL,
   PRIMARY KEY (`id_historico`),
   KEY `fk_aparelho` (`fk_aparelho`),
-  CONSTRAINT `historico_consumo_ibfk_1` FOREIGN KEY (`fk_aparelho`) REFERENCES `aparelho` (`id_aparelho`)
+  KEY `fk_bandeira` (`fk_bandeira`),
+  CONSTRAINT `historico_consumo_ibfk_1` FOREIGN KEY (`fk_aparelho`) REFERENCES `aparelho` (`id_aparelho`),
+  CONSTRAINT `historico_consumo_ibfk_2` FOREIGN KEY (`fk_bandeira`) REFERENCES `bandeira` (`id_bandeira`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -122,6 +102,33 @@ LOCK TABLES `historico_consumo` WRITE;
 /*!40000 ALTER TABLE `historico_consumo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `historico_consumo` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `id_usuario` int(5) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(30) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(50) NOT NULL,
+  `tipo_usuario` enum('adm','usr') NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -132,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-20 12:58:52
+-- Dump completed on 2017-11-22 10:04:50
