@@ -37,12 +37,12 @@ public class AparelhoDAO {
         Aparelho aparelho;
         try{
             Connection con = conexao.getConnection();
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("Select * from aparelho");
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM aparelho");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
             	aparelho = new Aparelho();
             	aparelho.setId_aparelho(rs.getInt("id_aparelho"));
-            	aparelho.setNome(rs.getString("nome"));
+            	aparelho.setNome(rs.getString("nome_aparelho"));
             	aparelho.setPotencia(rs.getLong("potencia"));
             	aparelho.setComodo(rs.getString("comodo"));
                 aparelhos.add(aparelho);
