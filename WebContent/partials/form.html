@@ -1,0 +1,37 @@
+<div class="container pad-top">
+  <h3 class="text-center">CADASTRAR APARELHO</h3>
+  <hr>
+  <div class="form-group">
+    <label>Nome do aparelho</label>
+    <input type="text" name="aparelho" class="form-control" ng-model="aparelho.nome_aparelho">
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Potência</label>
+        <input type="number" name="potencia" class="form-control" ng-model="aparelho.potencia">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Comodo</label>
+        <select class="form-control" name="aparelho.comodo">
+          <option value="" selected disabled>Selecione um cômodo</option>
+          <option value="">Sala</option>
+          <option value="">Quarto</option>
+          <option value="">Cozinha</option>
+          <option value="">Banheiro</option>
+          <option value="">Área de serviço</option>
+          <option value="">Outro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="pull-left">
+    <button type="button" class="btn btn-danger" name="button" ng-click="voltarRota()">Retornar</button>
+  </div>
+  <div class="pull-right">
+    <button type="button" class="btn btn-info" name="button">Cadastrar</button>
+  </div>
+</div>

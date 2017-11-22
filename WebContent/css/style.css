@@ -1,0 +1,126 @@
+.navbar {
+  margin-bottom: 0px !important
+}
+
+.navbar-default {
+  border-radius: 0px !important;
+}
+
+.navbar-collapse {
+  border-color: transparent !important;
+}
+
+.icon-bar {
+  background-color: #fff !important;
+}
+
+.navbar-toggle:hover {
+  background-color: transparent !important
+}
+
+.navbar-top {
+  background-color: #6699ff !important;
+  border-color: #6699ff !important;  
+  padding: 30px;
+}
+
+.navbar-secundary {
+  padding: 0px !important
+}
+
+.wrimagecard{
+	margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  position: relative;
+  background: #fff;
+  box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.wrimagecard .fa{
+	position: relative;
+  font-size: 70px;
+}
+
+.wrimagecard-topimage_header{
+  padding: 20px;
+}
+
+a.wrimagecard:hover, .wrimagecard-topimage:hover {
+  box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+}
+
+.wrimagecard-topimage a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wrimagecard-topimage_title {
+  padding: 20px 24px;
+  height: 80px;
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+
+.wrimagecard-topimage a {
+  border-bottom: none;
+  text-decoration: none;
+  color: #525c65;
+  transition: color 0.3s ease;
+}
+
+.pad-top {
+  padding-top: 20px
+}
+
+.mar-btm {
+  margin-bottom: 20px
+}
+
+.logo {
+  margin-top: -22px
+}
+
+.business-card {
+  border: 1px solid #cccccc;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.flag {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+  margin-left: -17px;
+}
+
+.flag-yelow {
+  background-color: #FFFF00;
+}
+
+.flag-green {
+  background-color: #006400;
+}
+
+.flag-red1 {
+  background-color: #FF6347;
+}
+
+.flag-red2 {
+  background-color: #800000;
+}
+
+.checkbox-flag {
+  width: 20px;
+  height: 20px;
+}
+
+.navbar-title {
+  color: #f8f8f8;
+  text-transform: uppercase;
+}
