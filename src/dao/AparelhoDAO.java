@@ -1,4 +1,5 @@
 package dao;
+
 import model.Aparelho;
 import model.Conexao;
 import com.mysql.jdbc.Connection;
