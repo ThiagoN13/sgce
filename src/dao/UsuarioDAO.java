@@ -34,12 +34,20 @@ public class UsuarioDAO {
         }
    }
     
+<<<<<<< HEAD
     public ArrayList<Usuario> login(){
+=======
+    public ArrayList<Usuario> listar(){
+>>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         Usuario usuario;
         try{
             Connection con = conexao.getConnection();
+<<<<<<< HEAD
             PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario Where login = email And senha = senha");
+=======
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario");
+>>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
             	usuario = new Usuario();

@@ -2,10 +2,15 @@ package dao;
 
 import model.Consumo;
 import model.Conexao;
+<<<<<<< HEAD
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+=======
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+>>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -15,6 +20,7 @@ public class ConsumoDAO {
     public ConsumoDAO(){
         conexao = new Conexao();
     }
+<<<<<<< HEAD
     
     public void cadastro(String data, double valor_em_preco, int quantidade_de_aparelhos, int consumo_em_horas, int fk_aparelho, int fk_usuario){
    	 try{
@@ -36,6 +42,8 @@ public class ConsumoDAO {
             System.out.println("Erro: "+e.getMessage());
         }
    }
+=======
+>>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
 	
 	public ArrayList<Consumo> listar(){
         ArrayList<Consumo> consumos = new ArrayList<Consumo>();
@@ -61,6 +69,7 @@ public class ConsumoDAO {
         return aparelhos;
     }
 	
+<<<<<<< HEAD
 	public ArrayList<Consumo> consumoTotal(){
         ArrayList<Consumo> consumos = new ArrayList<Consumo>();
         Consumo consumo;
@@ -85,4 +94,6 @@ public class ConsumoDAO {
         return aparelhos;
     }
 	
+=======
+>>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
 }
