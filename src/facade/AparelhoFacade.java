@@ -14,7 +14,6 @@ import dao.AparelhoDAO;
 import model.Aparelho;
 
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-
 @Consumes({MediaType.APPLICATION_JSON})
 
 @Path("/aparelhos")
