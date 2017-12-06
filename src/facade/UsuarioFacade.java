@@ -3,6 +3,9 @@ package facade;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -14,20 +17,21 @@ import dao.UsuarioDAO;
 
 @Consumes({MediaType.APPLICATION_JSON})
 
-@Path("/usuarios")
-
+@Path("/usuario")
 public class UsuarioFacade {
 	UsuarioDAO usuarioDAO = new UsuarioDAO();
-	static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
-	@GET
+	@POST 
+	@Path("/cadastro")
 	@Produces("application/json")
-	public ArrayList<Usuario> executaGet(){
-        return usuarios;
-	}
+	public void cadastro(Usuario usuario) throws Exception{
+		usuarioDAO.cadastro(usuario.getNome(), usuario.getLogin(), usuario.getEmail(), usuario.getSenha(), usuario.getTipo_usuario());
+    }
 	
 	@POST 
-	public void executaPost(Usuario usuario) throws Exception{
-		usuarioDAO.cadastro(usuario.getNome(), usuario.getLogin(), usuario.getEmail(), usuario.getSenha(), usuario.getTipo_usuario());
+	@Path("/login")
+	@Produces("application/json")
+	public void login(Usuario usuario) throws Exception{
+		usuarioDAO.login(usuario.getEmail(), usuario.getSenha());
     }
 }

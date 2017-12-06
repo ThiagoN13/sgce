@@ -12,7 +12,7 @@ public class Usuario implements Serializable {
 	private String login;
 	private String email;
 	private String senha;
-	private String tipo_usuario;
+	private String tipo_usuario = "usr";
 	
 	public int getId_usuario() {
 		return id_usuario;

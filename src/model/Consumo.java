@@ -15,9 +15,9 @@ public class Consumo implements Serializable {
 	private int quantidade_de_aparelhos;
 	private int quantidade_da_potencia;
 	private int consumo_em_horas;
-	private Aparelho fk_aparelho;
-	private Usuario fk_usuario;
-	private Bandeira bandeira;
+	public Aparelho fk_aparelho;
+	public Usuario usuario;
+	public Bandeira bandeira;
 		
 	public int getId_historico() {
 		return id_historico;
@@ -75,14 +75,6 @@ public class Consumo implements Serializable {
 		this.consumo_em_horas = consumo_em_horas;
 	}
 		
-	public Usuario getFk_usuario() {
-		return fk_usuario;
-	}
-
-	public void setFk_usuario(Usuario fk_usuario) {
-		this.fk_usuario = fk_usuario;
-	}
-
 	public Bandeira getBandeira() {
 		return bandeira;
 	}
@@ -128,24 +120,22 @@ public class Consumo implements Serializable {
 		}if(this.bandeira.getBandeiraAmarela() == true){
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 2);
-			} else {
-				return whats * 0.66;
-			}	
+			}
+			return whats * 0.66;
 		}if(this.bandeira.getBandeiraVermelha1() == true){
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 3);
-			} else {
-				return whats * 0.66;
 			}
+			
+			return whats * 0.66;
 		}if(this.bandeira.getBandeiraVermelha2() == true){
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 3.50);
-			} else {
-				return whats * 0.66;
 			}
-		}else{
-			return 0;
+			
+		return whats * 0.66;
 		}
 		
+		return 0;		
 	}	
 }

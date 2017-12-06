@@ -1,10 +1,11 @@
 package facade;
 
-import java.util.ArrayList;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -19,21 +20,16 @@ import model.Aparelho;
 @Path("/aparelhos")
 public class AparelhoFacade {
 	AparelhoDAO aparelhoDao = new AparelhoDAO();
-	static ArrayList<Aparelho> aparelhos = new ArrayList<Aparelho>();
-
-	static {
-		aparelhos.add(new Aparelho("TV", 12, "quarto"));
-	}
 	
 	@GET
 	@Produces("application/json")
-	public ArrayList<Aparelho> executaGet(){
-        return aparelhos;
-//		return aparelhoDao.listar();
+	public ArrayList<Aparelho> executaGet(int id_usuario){
+		System.out.println(id_usuario);
+		return aparelhoDao.listar(id_usuario);
 	}
 	
 	@POST 
 	public void executaPost(Aparelho aparelho) throws Exception{
-		aparelhoDao.cadastro(aparelho.getNome(), aparelho.getPotencia(), aparelho.getComodo());
+		aparelhoDao.cadastro(aparelho.getNome(), aparelho.getPotencia(), aparelho.getComodo(), aparelho.usuario.getId_usuario());
     }
 }

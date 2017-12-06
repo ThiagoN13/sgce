@@ -3,7 +3,7 @@
   <hr>
   <div class="row">
     <form name="formCalculo" ng-submit="submeterFormulario()" novalidate>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <div class="form-group">
           <label>Aparelho</label>
           <select 
@@ -13,14 +13,19 @@
 	          ng-options="item as item.nome for item in aparelhos track by id_aparelho"
 	          required>
             <option value="" disabled selected>Selecione um aparelho</option>
-            <option value="12s">teste um aparelho</option>
           </select>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <label>Quantidade de horas</label>
+          <input type="number" name="consumo_em_horas" class="form-control" required ng-model="calculo.consumo_em_horas">
         </div>
       </div>
       <div class="col-sm-4">
         <div class="form-group">
           <label>Quantidade de aparelhos</label>
-          <input type="number" name="quantidade_aparelho" class="form-control" required ng-model="calculo.quantidade_aparelho">
+          <input type="number" name="quantidade_de_aparelhos" class="form-control" required ng-model="calculo.quantidade_de_aparelhos">
         </div>
       </div>
       <div class="col-sm-2 pad-top">

@@ -28,10 +28,10 @@ CREATE TABLE `aparelho` (
   `potencia` varchar(7) NOT NULL,
   `comodo` enum('sala','quarto','cozinha','banheiro','outro') NOT NULL,
   `padrao` tinyint(1) NOT NULL,
-  `fk_usuario` int(5) NOT NULL,
+  `id_usuario` int(5) NOT NULL,
   PRIMARY KEY (`id_aparelho`),
-  KEY `fk_usuario` (`fk_usuario`),
-  CONSTRAINT `aparelho_ibfk_1` FOREIGN KEY (`fk_usuario`) REFERENCES `usuario` (`id_usuario`)
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `aparelho_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,13 +84,13 @@ CREATE TABLE `historico_consumo` (
   `quantidade_de_aparelhos` varchar(10) NOT NULL,
   `quantidade_da_potencia` varchar(10) NOT NULL,
   `tipo_calculo` enum('diario','mensal') NOT NULL,
-  `fk_aparelho` int(5) NOT NULL,
-  `fk_bandeira` int(5) NOT NULL,
+  `id_aprelho` int(5) NOT NULL,
+  `id_bandeira` int(5) NOT NULL,
   PRIMARY KEY (`id_historico`),
-  KEY `fk_aparelho` (`fk_aparelho`),
-  KEY `fk_bandeira` (`fk_bandeira`),
-  CONSTRAINT `historico_consumo_ibfk_1` FOREIGN KEY (`fk_aparelho`) REFERENCES `aparelho` (`id_aparelho`),
-  CONSTRAINT `historico_consumo_ibfk_2` FOREIGN KEY (`fk_bandeira`) REFERENCES `bandeira` (`id_bandeira`)
+  KEY `id_aprelho` (`id_aprelho`),
+  KEY `id_bandeira` (`id_bandeira`),
+  CONSTRAINT `historico_consumo_ibfk_1` FOREIGN KEY (`id_aprelho`) REFERENCES `aparelho` (`id_aparelho`),
+  CONSTRAINT `historico_consumo_ibfk_2` FOREIGN KEY (`id_bandeira`) REFERENCES `bandeira` (`id_bandeira`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

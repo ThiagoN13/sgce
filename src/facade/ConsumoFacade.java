@@ -16,20 +16,21 @@ import dao.ConsumoDAO;
 
 @Consumes({MediaType.APPLICATION_JSON})
 
-@Path("/consumos")
-
 public class ConsumoFacade {
 	ConsumoDAO consumoDAO = new ConsumoDAO();
 	static ArrayList<Consumo> consumos = new ArrayList<Consumo>();
 	
 	@GET
+	@Path("/consumos")
 	@Produces("application/json")
-	public ArrayList<Consumo> executaGet(){
-        return consumos;
+	public ArrayList<Consumo> total(int id_usuario){
+		return consumoDAO.listar(id_usuario);
 	}
 	
-	@POST 
-	public void executaPost(Consumo consumo) throws Exception{
-		consumoDAO.cadastro(consumo.getData(), consumo.getQuantidade_de_aparelhos(), consumo.getConsumo_em_horas(), consumo.getFk_aparelho(), consumo.getFk_usuario());
-    }
+	@GET
+	@Path("/consumototal")
+	@Produces("application/json")
+	public ArrayList<Consumo> consumoTotal(int id_usuario){
+		return consumoDAO.consumoTotal(id_usuario);
+	}
 }

@@ -12,6 +12,7 @@ public class Aparelho implements Serializable {
 	private long potencia;
 	private String comodo;
 	private Bandeira bandeira;
+	public Usuario usuario;
 	
 	public Aparelho() {
 		

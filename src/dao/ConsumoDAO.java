@@ -2,15 +2,10 @@ package dao;
 
 import model.Consumo;
 import model.Conexao;
-<<<<<<< HEAD
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-=======
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
->>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -20,19 +15,18 @@ public class ConsumoDAO {
     public ConsumoDAO(){
         conexao = new Conexao();
     }
-<<<<<<< HEAD
     
-    public void cadastro(String data, double valor_em_preco, int quantidade_de_aparelhos, int consumo_em_horas, int fk_aparelho, int fk_usuario){
+    public void cadastro(String data, double valor_em_preco, int quantidade_de_aparelhos, int consumo_em_horas, int id_aprelho, int id_usuario){
    	 try{
-            String sql= "INSERT INTO historico_consumo (data, double valor_em_preco, quantidade_de_aparelhos, consumo_em_horas, fk_aparelho, fk_usuario) VALUES (?,?,?,?,?,?)";
-            Connection con = conexao.getConnection();
+            String sql= "INSERT INTO historico_consumo (data, double valor_em_preco, quantidade_de_aparelhos, consumo_em_horas, id_aprelho, id_usuario) VALUES (?,?,?,?,?,?)";
+            Connection con = (Connection) conexao.getConnection();
             PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, data);
             stmt.setDouble(2, valor_em_preco);
-            stmt.setInteger(3, quantidade_de_aparelhos);
-            stmt.setInteger(4, consumo_em_horas);
-            stmt.setInteger(5, fk_aparelho);
-            stmt.setInteger(6, fk_usuario);
+            stmt.setInt(3, quantidade_de_aparelhos);
+            stmt.setInt(4, consumo_em_horas);
+            stmt.setInt(5, id_aprelho);
+            stmt.setInt(6, id_usuario);
             stmt.execute();
             stmt.close();
             con.close();
@@ -42,19 +36,20 @@ public class ConsumoDAO {
             System.out.println("Erro: "+e.getMessage());
         }
    }
-=======
->>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
 	
-	public ArrayList<Consumo> listar(){
+	public ArrayList<Consumo> listar(int id_usuario){
         ArrayList<Consumo> consumos = new ArrayList<Consumo>();
         Consumo consumo;
         try{
-            Connection con = conexao.getConnection();
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM historico_consumo");
+            Connection con = (Connection) conexao.getConnection();
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM historico_consumo WHERE id_usuario");
+            stmt.setInt(1, id_usuario);
             ResultSet rs = stmt.executeQuery();
+            stmt.close();
+            con.close();
             while(rs.next()){
             	consumo = new Consumo();
-            	consumo.setFk_usuario(rs.getInt("fk_usuario"));
+            	consumo.usuario.setId_usuario(rs.getInt("id_usuario"));
             	consumo.setData(rs.getString("data"));
             	consumo.setValor_em_preco(rs.getDouble("valor_em_preco"));
             	consumo.setQuantidade_de_aparelhos(rs.getInt("quantidade_de_aparelhos"));
@@ -66,20 +61,22 @@ public class ConsumoDAO {
             System.out.println("Erro: "+ e.getMessage());
         } 
         
-        return aparelhos;
+        return consumos;
     }
 	
-<<<<<<< HEAD
-	public ArrayList<Consumo> consumoTotal(){
+	public ArrayList<Consumo> consumoTotal(int id_usuario){
         ArrayList<Consumo> consumos = new ArrayList<Consumo>();
         Consumo consumo;
         try{
-            Connection con = conexao.getConnection();
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT SUM (valor_em_preco) FROM `historico_consumo`");
+            Connection con = (Connection) conexao.getConnection();
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT SUM (valor_em_preco) FROM historico_consumo WHERE id_usuario=?");
+            stmt.setInt(1, id_usuario);
             ResultSet rs = stmt.executeQuery();
+            stmt.close();
+            con.close();
             while(rs.next()){
             	consumo = new Consumo();
-            	consumo.setFk_usuario(rs.getInt("fk_usuario"));
+            	consumo.usuario.setId_usuario(rs.getInt("id_usuario"));
             	consumo.setData(rs.getString("data"));
             	consumo.setValor_em_preco(rs.getDouble("valor_em_preco"));
             	consumo.setQuantidade_de_aparelhos(rs.getInt("quantidade_de_aparelhos"));
@@ -91,9 +88,6 @@ public class ConsumoDAO {
             System.out.println("Erro: "+ e.getMessage());
         } 
         
-        return aparelhos;
+        return consumos;
     }
-	
-=======
->>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
 }

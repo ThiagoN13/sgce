@@ -17,7 +17,7 @@ public class UsuarioDAO {
     public void cadastro(String nome, String login, String email, String senha, String tipo_usuario){
    	 try{
             String sql= "INSERT INTO usuario (nome, login, email, senha, tipo_usuario) VALUES (?,?,?,?,?)";
-            Connection con = conexao.getConnection();
+            Connection con = (Connection) conexao.getConnection();
             PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, login);
@@ -34,33 +34,25 @@ public class UsuarioDAO {
         }
    }
     
-<<<<<<< HEAD
-    public ArrayList<Usuario> login(){
-=======
-    public ArrayList<Usuario> listar(){
->>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
-        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-        Usuario usuario;
+    public Usuario login(String email, String senha){
+        Usuario usuario = new Usuario();
         try{
-            Connection con = conexao.getConnection();
-<<<<<<< HEAD
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario Where login = email And senha = senha");
-=======
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario");
->>>>>>> bc7eeba5c9942ebc002c3bfb779cd7a6312bec99
+            Connection con = (Connection) conexao.getConnection();
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario WHERE email=? AND senha=?");
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
+            stmt.close();
+            con.close();
             while(rs.next()){
-            	usuario = new Usuario();
             	usuario.setEmail(rs.getString("email"));
             	usuario.setSenha(rs.getString("senha"));
-            	usuarios.add(usuario);
             }
 
         }catch(Exception e){
             System.out.println("Erro: "+ e.getMessage());
         } 
         
-        return usuarios;
+        return usuario;
     }
-}
 }

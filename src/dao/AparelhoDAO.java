@@ -14,10 +14,10 @@ public class AparelhoDAO {
         conexao = new Conexao();
     }
 
-    public void cadastro(String nome_aparelho, long potencia, String comodo){
+    public void cadastro(String nome_aparelho, long potencia, String comodo, int id_usuario){
     	 try{
-             String sql= "INSERT INTO aparelho (nome_aparelho, potencia, comodo) VALUES (?,?,?)";
-             Connection con = conexao.getConnection();
+             String sql= "INSERT INTO aparelho (nome_aparelho, potencia, comodo, id_usuario) VALUES (?,?,?,?)";
+             Connection con = (Connection) conexao.getConnection();
              PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
              stmt.setString(1, nome_aparelho);
              stmt.setLong(2, potencia);
@@ -32,13 +32,16 @@ public class AparelhoDAO {
          }
     }
     
-    public ArrayList<Aparelho> listar(){
+    public ArrayList<Aparelho> listar(int id_usuario){
         ArrayList<Aparelho> aparelhos = new ArrayList<Aparelho>();
         Aparelho aparelho;
         try{
-            Connection con = conexao.getConnection();
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM aparelho");
+            Connection con = (Connection) conexao.getConnection();
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM aparelho WHERE id_usuario=?");
+            stmt.setInt(1, id_usuario);
             ResultSet rs = stmt.executeQuery();
+            stmt.close();
+            con.close();
             while(rs.next()){
             	aparelho = new Aparelho();
             	aparelho.setId_aparelho(rs.getInt("id_aparelho"));
