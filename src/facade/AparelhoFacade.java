@@ -14,20 +14,20 @@ import dao.AparelhoDAO;
 import model.Aparelho;
 
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Consumes({MediaType.APPLICATION_JSON})
 
 @Path("/aparelhos")
 public class AparelhoFacade {
 	AparelhoDAO aparelhoDao = new AparelhoDAO();
 	
 	@GET
-	@Produces("application/json")
-	public ArrayList<Aparelho> executaGet(int id_usuario, String comodo){
-		System.out.println(id_usuario);
-		return aparelhoDao.listar(id_usuario, comodo);
+	@Produces({MediaType.APPLICATION_JSON})
+	public ArrayList<Aparelho> executaGet(Aparelho aparelho){
+		System.out.println(aparelho.getComodo());
+		return aparelhoDao.listar(aparelho.usuario.getId_usuario(), aparelho.getComodo());
 	}
 	
 	@POST 
+	@Consumes({MediaType.APPLICATION_JSON})
 	public void executaPost(Aparelho aparelho) throws Exception{
 		aparelhoDao.cadastro(aparelho.getNome(), aparelho.getPotencia(), aparelho.getComodo(), aparelho.usuario.getId_usuario());
     }
