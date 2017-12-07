@@ -29,7 +29,7 @@
 }
 
 .wrimagecard{
-	margin-top: 0;
+  margin-top: 0;
   margin-bottom: 1.5rem;
   text-align: left;
   position: relative;
@@ -40,7 +40,7 @@
 }
 
 .wrimagecard .fa{
-	position: relative;
+  position: relative;
   font-size: 70px;
 }
 
@@ -73,7 +73,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 }
 
 .pad-top {
-  padding-top: 20px
+  padding-top: 23px
 }
 
 .mar-btm {
@@ -93,9 +93,9 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 }
 
 .flag {
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
   margin-left: -17px;
 }
 
