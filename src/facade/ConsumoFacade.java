@@ -9,6 +9,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import model.Aparelho;
 import model.Consumo;
 import dao.ConsumoDAO;
 
@@ -23,7 +24,7 @@ public class ConsumoFacade {
 	@GET
 	@Path("/consumos")
 	@Produces("application/json")
-	public ArrayList<Consumo> total(int id_usuario){
+	public ArrayList<Consumo> listarTodos(int id_usuario){
 		return consumoDAO.listar(id_usuario);
 	}
 	
@@ -33,4 +34,10 @@ public class ConsumoFacade {
 	public ArrayList<Consumo> consumoTotal(int id_usuario){
 		return consumoDAO.consumoTotal(id_usuario);
 	}
+	
+	@POST 
+	public void executaPost(Consumo consumo) throws Exception{
+		consumo.setValor_em_preco(consumo.calculaConsumoDiario(consumo.aparelho, consumo.getConsumo_em_horas(), consumo.bandeira, consumo.getQuantidade_de_aparelhos()));
+		consumoDAO.cadastro(consumo.getData(), consumo.getValor_em_preco(), consumo.getQuantidade_de_aparelhos(), consumo.getConsumo_em_horas(), consumo.aparelho.getId_aparelho(), consumo.usuario.getId_usuario(), consumo.bandeira.getId_bandeira());
+    }
 }

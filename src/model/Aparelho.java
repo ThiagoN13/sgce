@@ -11,7 +11,6 @@ public class Aparelho implements Serializable {
 	private String nome;
 	private long potencia;
 	private String comodo;
-	private Bandeira bandeira;
 	public Usuario usuario;
 	
 	public Aparelho() {
@@ -54,13 +53,5 @@ public class Aparelho implements Serializable {
 	
 	public int getId_aparelho() {
 		return id_aparelho;
-	}
-
-	public Bandeira getBandeira() {
-		return bandeira;
-	}
-
-	public void setBandeira(Bandeira bandeira) {
-		this.bandeira = bandeira;
 	}
 }

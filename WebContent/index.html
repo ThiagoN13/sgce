@@ -31,10 +31,11 @@
             <li><a ui-sref="index"><h5 class="navbar-title">INICÍO</h5></a></li>
             <li><a ui-sref="form"><h5 class="navbar-title">CADASTRAR APARELHO</h5></a></li>
             <li><a ui-sref="history"><h5 class="navbar-title">HISTÓRICO DE CONSUMO</h5></a></li>
+            <li class="visible-xs"><a ui-sref="#"><h5 class="navbar-title">CONSUMO MENSAL: {{calculoMensal.toFixed(2)}}</h5></a></li>
           </ul>
         </div>
       </nav>
-      <nav class="navbar navbar-default navbar-secundary">
+      <nav class="navbar navbar-default navbar-secundary hidden-xs">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#">Consumo mensal: {{calculoMensal.toFixed(2)}}</a>

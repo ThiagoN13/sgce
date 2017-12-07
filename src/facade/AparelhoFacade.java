@@ -22,9 +22,9 @@ public class AparelhoFacade {
 	
 	@GET
 	@Produces("application/json")
-	public ArrayList<Aparelho> executaGet(int id_usuario){
+	public ArrayList<Aparelho> executaGet(int id_usuario, String comodo){
 		System.out.println(id_usuario);
-		return aparelhoDao.listar(id_usuario);
+		return aparelhoDao.listar(id_usuario, comodo);
 	}
 	
 	@POST 

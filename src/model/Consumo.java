@@ -13,12 +13,21 @@ public class Consumo implements Serializable {
 	private String data;
 	private double valor_em_preco;
 	private int quantidade_de_aparelhos;
+	private String tipo_calculo = "diario";
 	private int quantidade_da_potencia;
 	private int consumo_em_horas;
-	public Aparelho fk_aparelho;
+	public Aparelho aparelho;
 	public Usuario usuario;
 	public Bandeira bandeira;
 		
+	public void setTipo_calculo(String tipo_calculo) {
+		this.tipo_calculo = tipo_calculo;
+	}
+	
+	public String getTipo_calculo() {
+		return tipo_calculo;
+	}
+	
 	public int getId_historico() {
 		return id_historico;
 	}
@@ -59,12 +68,12 @@ public class Consumo implements Serializable {
 		this.quantidade_da_potencia = quantidade_da_potencia;
 	}
 	
-	public Aparelho getFk_aparelho() {
-		return fk_aparelho;
+	public Aparelho getAparelho() {
+		return aparelho;
 	}
 	
-	public void setFk_aparelho(Aparelho fk_aparelho) {
-		this.fk_aparelho = fk_aparelho;
+	public void setAparelho(Aparelho aparelho) {
+		this.aparelho = aparelho;
 	}
 	
 	public int getConsumo_em_horas() {
@@ -84,36 +93,35 @@ public class Consumo implements Serializable {
 	}
 
 	public double calculaConsumoMensal(Aparelho aparelho, int consumo_em_horas, Bandeira bandeira, int quantidade_de_aparelhos){
-		double whats = (((this.getQuantidade_de_aparelhos() * this.fk_aparelho.getPotencia()) * this.getConsumo_em_horas()) * 30) / 1000;
+		double whats = (((this.getQuantidade_de_aparelhos() * this.aparelho.getPotencia()) * this.getConsumo_em_horas()) * 30) / 1000;
 				
 		if(this.bandeira.getBandeiraVerde() == true){
 			return whats * 0.66;
 		}if(this.bandeira.getBandeiraAmarela() == true){
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 2);
-			} else {
-				return whats * 0.66;
-			}			
+			}
+			
+			return whats * 0.66;
 		}if(this.bandeira.getBandeiraVermelha1() == true){
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 3);
-			} else {
-				return whats * 0.66;
-			}
+			} 
+			
+			return whats * 0.66;
 		}if(this.bandeira.getBandeiraVermelha2() == true){
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 3.50);
-			} else {
-				return whats * 0.66;
 			}
-		}else{
-			return 0;
+			
+			return whats * 0.66;
 		}
-		
+
+		return 0;
 	}
 	
 	public double calculaConsumoDiario(Aparelho aparelho, int consumo_em_horas, Bandeira bandeira, int quantidade_de_aparelhos){
-		double whats = ((this.getQuantidade_de_aparelhos() * this.fk_aparelho.getPotencia()) * this.getConsumo_em_horas()) / 1000;
+		double whats = ((this.getQuantidade_de_aparelhos() * this.aparelho.getPotencia()) * this.getConsumo_em_horas()) / 1000;
 		
 		if(this.bandeira.getBandeiraVerde() == true){
 			return whats * 0.66;
@@ -121,6 +129,7 @@ public class Consumo implements Serializable {
 			if(whats >= 100){
 				return ((whats * 0.66) + ((int)(whats) / 100) * 2);
 			}
+			
 			return whats * 0.66;
 		}if(this.bandeira.getBandeiraVermelha1() == true){
 			if(whats >= 100){
@@ -133,7 +142,7 @@ public class Consumo implements Serializable {
 				return ((whats * 0.66) + ((int)(whats) / 100) * 3.50);
 			}
 			
-		return whats * 0.66;
+			return whats * 0.66;
 		}
 		
 		return 0;		

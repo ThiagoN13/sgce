@@ -32,13 +32,14 @@ public class AparelhoDAO {
          }
     }
     
-    public ArrayList<Aparelho> listar(int id_usuario){
+    public ArrayList<Aparelho> listar(int id_usuario, String comodo){
         ArrayList<Aparelho> aparelhos = new ArrayList<Aparelho>();
         Aparelho aparelho;
         try{
             Connection con = (Connection) conexao.getConnection();
-            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM aparelho WHERE id_usuario=?");
+            PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM aparelho WHERE id_usuario=? AND comodo=?");
             stmt.setInt(1, id_usuario);
+            stmt.setString(2, comodo);
             ResultSet rs = stmt.executeQuery();
             stmt.close();
             con.close();
