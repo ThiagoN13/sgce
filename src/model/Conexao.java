@@ -18,6 +18,7 @@ public class Conexao {
 	    	Class.forName("com.mysql.jdbc.Driver");
 	         return (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/loja", "root", "");
 	     } catch (Exception e) {
+	    	 System.out.println("Erro ao conectar ao banco");
 	         throw new RuntimeException(e);
 	     }
 	 }   

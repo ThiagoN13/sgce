@@ -32,6 +32,7 @@ public class UsuarioFacade {
 	@Path("/login")
 	@Produces("application/json")
 	public void login(Usuario usuario) throws Exception{
+		System.out.println(usuario.getEmail());
 		usuarioDAO.login(usuario.getEmail(), usuario.getSenha());
     }
 }

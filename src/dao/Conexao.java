@@ -19,8 +19,9 @@ public class Conexao {
 	public Connection getConnection() {
 	     try {
 	    	Class.forName("com.mysql.jdbc.Driver");
-	         return (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sgce", "root", "");
+	        return (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sgce", "root", "");
 	     } catch (Exception e) {
+	    	 System.out.println("Erro ao conectar ao banco de dados");
 	         throw new RuntimeException(e);
 	     }
 	 }   
