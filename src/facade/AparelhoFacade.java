@@ -12,23 +12,26 @@ import javax.ws.rs.core.MediaType;
 
 import dao.AparelhoDAO;
 import model.Aparelho;
+import model.Consumo;
 
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 
 @Path("/aparelhos")
 public class AparelhoFacade {
 	AparelhoDAO aparelhoDao = new AparelhoDAO();
+	static ArrayList<Aparelho> aparelhos = new ArrayList<Aparelho>();
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public ArrayList<Aparelho> executaGet(Aparelho aparelho){
-		System.out.println(aparelho.getComodo());
-		return aparelhoDao.listar(aparelho.usuario.getId_usuario(), aparelho.getComodo());
+		return aparelhos;
+//		return aparelhoDao.listar(aparelho.usuario.getId_usuario(), aparelho.getComodo());
 	}
 	
 	@POST 
 	@Consumes({MediaType.APPLICATION_JSON})
 	public void executaPost(Aparelho aparelho) throws Exception{
-		aparelhoDao.cadastro(aparelho.getNome(), aparelho.getPotencia(), aparelho.getComodo(), aparelho.usuario.getId_usuario());
+		aparelhos.add(aparelho);
+//		aparelhoDao.cadastro(aparelho.getNome(), aparelho.getPotencia(), aparelho.getComodo(), aparelho.usuario.getId_usuario());
     }
 }

@@ -20,19 +20,22 @@ import dao.UsuarioDAO;
 @Path("/usuario")
 public class UsuarioFacade {
 	UsuarioDAO usuarioDAO = new UsuarioDAO();
-
+	ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+			
 	@POST 
 	@Path("/cadastro")
 	@Produces("application/json")
 	public void cadastro(Usuario usuario) throws Exception{
-		usuarioDAO.cadastro(usuario.getNome(), usuario.getLogin(), usuario.getEmail(), usuario.getSenha(), usuario.getTipo_usuario());
+		usuarios.add(usuario);
+//		usuarioDAO.cadastro(usuario.getNome(), usuario.getLogin(), usuario.getEmail(), usuario.getSenha(), usuario.getTipo_usuario());
     }
 	
 	@POST 
 	@Path("/login")
 	@Produces("application/json")
-	public void login(Usuario usuario) throws Exception{
-		System.out.println(usuario.getEmail());
-		usuarioDAO.login(usuario.getEmail(), usuario.getSenha());
+	public Usuario login(Usuario usuario) throws Exception{
+		
+		return usuario;
+//		return usuarioDAO.login(usuario.getEmail(), usuario.getSenha());
     }
 }

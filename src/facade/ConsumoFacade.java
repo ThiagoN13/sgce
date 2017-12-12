@@ -25,19 +25,21 @@ public class ConsumoFacade {
 	@Path("/consumos")
 	@Produces("application/json")
 	public ArrayList<Consumo> listarTodos(int id_usuario){
-		return consumoDAO.listar(id_usuario);
+		return consumos;
+//		return consumoDAO.listar(id_usuario);
 	}
 	
 	@GET
 	@Path("/consumototal")
 	@Produces("application/json")
-	public ArrayList<Consumo> consumoTotal(int id_usuario){
+	public int consumoTotal(int id_usuario){
 		return consumoDAO.consumoTotal(id_usuario);
 	}
 	
 	@POST 
 	public void executaPost(Consumo consumo) throws Exception{
 		consumo.setValor_em_preco(consumo.calculaConsumoDiario(consumo.aparelho, consumo.getConsumo_em_horas(), consumo.bandeira, consumo.getQuantidade_de_aparelhos()));
-		consumoDAO.cadastro(consumo.getData(), consumo.getValor_em_preco(), consumo.getQuantidade_de_aparelhos(), consumo.getConsumo_em_horas(), consumo.aparelho.getId_aparelho(), consumo.usuario.getId_usuario(), consumo.bandeira.getId_bandeira());
+		consumos.add(consumo);
+//		consumoDAO.cadastro(consumo.getData(), consumo.getValor_em_preco(), consumo.getQuantidade_de_aparelhos(), consumo.getConsumo_em_horas(), consumo.aparelho.getId_aparelho(), consumo.usuario.getId_usuario(), consumo.bandeira.getId_bandeira());
     }
 }

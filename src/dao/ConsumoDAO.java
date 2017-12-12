@@ -65,9 +65,8 @@ public class ConsumoDAO {
         return consumos;
     }
 	
-	public ArrayList<Consumo> consumoTotal(int id_usuario){
-        ArrayList<Consumo> consumos = new ArrayList<Consumo>();
-        Consumo consumo;
+	public int consumoTotal(int id_usuario){
+        int consumo = 0;
         try{
             Connection con = (Connection) conexao.getConnection();
             PreparedStatement stmt = (PreparedStatement) con.prepareStatement("SELECT SUM (valor_em_preco) FROM historico_consumo WHERE id_usuario=?");
@@ -76,19 +75,13 @@ public class ConsumoDAO {
             stmt.close();
             con.close();
             while(rs.next()){
-            	consumo = new Consumo();
-            	consumo.usuario.setId_usuario(rs.getInt("id_usuario"));
-            	consumo.setData(rs.getString("data"));
-            	consumo.setValor_em_preco(rs.getDouble("valor_em_preco"));
-            	consumo.setQuantidade_de_aparelhos(rs.getInt("quantidade_de_aparelhos"));
-            	consumo.setQuantidade_da_potencia(rs.getInt("quantidade_da_potencia"));
-            	consumos.add(consumo);
+            	consumo = rs.getInt("valor_em_preco");
             }
 
         }catch(Exception e){
             System.out.println("Erro: "+ e.getMessage());
         } 
         
-        return consumos;
+        return consumo;
     }
 }
