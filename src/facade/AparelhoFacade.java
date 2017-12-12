@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 
 import dao.AparelhoDAO;
 import model.Aparelho;
-import model.Consumo;
 
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 
@@ -21,9 +20,13 @@ public class AparelhoFacade {
 	AparelhoDAO aparelhoDao = new AparelhoDAO();
 	static ArrayList<Aparelho> aparelhos = new ArrayList<Aparelho>();
 	
+	static {
+		aparelhos.add(new Aparelho("TV",100, "quarto"));
+	}
+	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public ArrayList<Aparelho> executaGet(Aparelho aparelho){
+	public ArrayList<Aparelho> executaGet(){
 		return aparelhos;
 //		return aparelhoDao.listar(aparelho.usuario.getId_usuario(), aparelho.getComodo());
 	}

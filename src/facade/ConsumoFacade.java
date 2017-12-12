@@ -17,14 +17,19 @@ import dao.ConsumoDAO;
 
 @Consumes({MediaType.APPLICATION_JSON})
 
+@Path("/consumos")
 public class ConsumoFacade {
 	ConsumoDAO consumoDAO = new ConsumoDAO();
 	static ArrayList<Consumo> consumos = new ArrayList<Consumo>();
 	
+	static {
+		consumos.add(new Consumo("12/11/2017", 1200, 3, 2, new Aparelho("TV",100, "quarto"), 120));
+	}
+	
 	@GET
-	@Path("/consumos")
+	@Path("/listar")
 	@Produces("application/json")
-	public ArrayList<Consumo> listarTodos(int id_usuario){
+	public ArrayList<Consumo> listarTodos(){
 		return consumos;
 //		return consumoDAO.listar(id_usuario);
 	}
@@ -37,6 +42,8 @@ public class ConsumoFacade {
 	}
 	
 	@POST 
+	@Path("/inserir")
+	@Consumes("application/json")
 	public void executaPost(Consumo consumo) throws Exception{
 		consumo.setValor_em_preco(consumo.calculaConsumoDiario(consumo.aparelho, consumo.getConsumo_em_horas(), consumo.bandeira, consumo.getQuantidade_de_aparelhos()));
 		consumos.add(consumo);

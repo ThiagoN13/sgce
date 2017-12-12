@@ -2,15 +2,15 @@
   <h3 class="text-center">CÔMODO {{comodo}}</h3>
   <hr>
   <div class="row">
-    <form name="formCalculo" ng-submit="submeterFormulario()" novalidate>
+    <form name="formCalculo" novalidate>
       <div class="col-sm-4">
         <div class="form-group">
           <label>Aparelho</label>
           <select 
 	          name="fk_aparelho" 
 	          class="form-control" 
-	          ng-model="calculo.fk_aparelho" 
-	          ng-options="item as item.nome for item in aparelhos track by id_aparelho"
+	          ng-model="calculo.aparelho" 
+	          ng-options="item as item.nome for item in aparelhos track by nome"
 	          required>
             <option value="" disabled selected>Selecione um aparelho</option>
           </select>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="col-sm-2 pad-top">
-        <button type="submit" name="button" class="btn btn-info">Adicionar <i class="fa fa-plus"></i></button>
+        <button type="button" name="button" class="btn btn-info" ng-click="submeterFormulario()">Adicionar <i class="fa fa-plus"></i></button>
       </div>
     </form>
   </div>
@@ -40,11 +40,10 @@
         <div class="media">
           <div class="media-body">
             <h3 class="media-heading">Aparelho: tal</h3>
-            <div><b>Potência:</b> tal</div>
+            <div><b>Potência:</b> {{calculo.aparelho.potencia}}</div>
             <div><b>Valor em R$:</b> </div>
-            <div><b>Quantidade de aparelhos:</b> </div>
-            <div><b>Bandeira:</b> </div>
-            <div><b>Data do calculo:</b> </div>
+            <div><b>Quantidade de aparelhos:</b> {{calculo.quantidade_de_aparelhos}}</div>
+            <div><b>Data do calculo:</b> {{calculo.data}}</div>
           </div>
         </div>
       </div>

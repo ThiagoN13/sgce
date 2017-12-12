@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 
 public class Consumo implements Serializable {
 	/**
@@ -19,6 +18,19 @@ public class Consumo implements Serializable {
 	public Aparelho aparelho;
 	public Usuario usuario;
 	public Bandeira bandeira;
+	
+	public Consumo (String data, double valor_em_preco, int quantidade_de_aparelhos, int consumo_em_horas, Aparelho aparelho, int quantidade_da_potencia) {
+		this.data = data;
+		this.valor_em_preco = valor_em_preco;
+		this.quantidade_de_aparelhos = quantidade_de_aparelhos;
+		this.consumo_em_horas = consumo_em_horas;
+		this.quantidade_da_potencia = quantidade_da_potencia;
+		this.aparelho = aparelho;
+	}
+	
+	public Consumo () {
+		
+	}
 		
 	public void setTipo_calculo(String tipo_calculo) {
 		this.tipo_calculo = tipo_calculo;

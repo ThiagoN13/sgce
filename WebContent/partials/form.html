@@ -3,7 +3,7 @@
   <hr>
   <div class="form-group">
     <label>Nome do aparelho</label>
-    <input type="text" name="aparelho" class="form-control" ng-model="aparelho.nome_aparelho">
+    <input type="text" name="aparelho" class="form-control" ng-model="aparelho.nome">
   </div>
   <div class="row">
     <div class="col-sm-6">
@@ -15,13 +15,13 @@
     <div class="col-sm-6">
       <div class="form-group">
         <label>Comodo</label>
-        <select class="form-control" name="aparelho.comodo">
+        <select class="form-control" ng-model="aparelho.comodo">
           <option value="" selected disabled>Selecione um cômodo</option>
           <option value="sala">Sala</option>
           <option value="quarto">Quarto</option>
           <option value="cozinha">Cozinha</option>
           <option value="banheiro">Banheiro</option>
-          <option value="area_servico">Área de serviço</option>
+          <option value="area_de_servico">Área de serviço</option>
           <option value="outro">Outro</option>
         </select>
       </div>
@@ -32,6 +32,6 @@
     <button type="button" class="btn btn-danger" name="button" ng-click="voltarRota()">Retornar</button>
   </div>
   <div class="pull-right">
-    <button type="button" class="btn btn-info" name="button">Cadastrar</button>
+    <button type="button" class="btn btn-info" name="button" ng-click="cadastrarAparelho()">Cadastrar</button>
   </div>
 </div>

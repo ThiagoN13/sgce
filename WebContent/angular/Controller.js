@@ -32,9 +32,9 @@ const myApp = angular.module('sgceApp', ['ui.router'])
     const usuario = usuarioService.getSession()
 
     function listarAparelhos() {
-      $http.get("http://localhost:8080/SGCE/rest/aparelhos?id_usuario=" + usuario.id_usuario + "&comodo=" + comodo)
+      $http.get("http://localhost:8080/SGCE/rest/aparelhos")
 	    .then(function(response) {
-	        $scope.aparelhos = response.data;
+	        $scope.aparelhos = response.data.filter(aparelho => aparelho.comodo == comodo);
 	    })
     }
     
@@ -45,25 +45,31 @@ const myApp = angular.module('sgceApp', ['ui.router'])
     }
 
     function submeterFormulario() {
-      if ($scope.formCalculo.$invalid) return
-
+//      if ($scope.formCalculo.$invalid) return
+    console.log($scope.calculo)
+      $scope.calculo.data = new Date()
       $scope.calculos.push($scope.calculo)
+      $http.post('http://localhost:8080/SGCE/rest/aparelhos', $scope.aparelho)
+    	  .then(function() {
+    		  alert("Cadastrado com sucesso")
+    	  })
     }
     
     listarAparelhos()
   })
   .controller('historyController', function($scope, $location, $http) {
-	  $http.get('http://localhost:8080/SGCE/rest/consumos')
+	  $http.get('http://localhost:8080/SGCE/rest/consumos/listar')
 	    .then(function(response) {
+	    	console.log(response)
 	        $scope.consumos = response.data;
 	    })
   })
-  .controller('formController', function($scope, $location, usuarioService) {
+  .controller('formController', function($scope, $location, usuarioService, $http) {
     $scope.voltarRota = voltarRota
     $scope.cadastrarAparelho = cadastrarAparelho
     
     function cadastrarAparelho() {
-    	$scope.aparelho.usuario = usuarioService.getSession()
+    	console.log($scope.aparelho)
     	$http.post('http://localhost:8080/SGCE/rest/aparelhos', $scope.aparelho)
     	  .then(function() {
     		  alert("Cadastrado com sucesso")
